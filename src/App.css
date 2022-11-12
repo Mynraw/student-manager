@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
-.App {
+.app {
   font-family: "Lato", sans-serif;
   margin: 0;
   padding: 0;
@@ -9,11 +9,11 @@
   height: 100%;
 }
 
-.App h1 {
+.app h1 {
   font-size: 50px;
 }
 
-.App .studentInfo {
+.app .studentInfo {
   width: 40%;
   margin: 10px auto;
   border-radius: 5px;
@@ -24,12 +24,12 @@
   font-weight: 600;
 }
 
-.App .studentInfo:hover {
+.app .studentInfo:hover {
   scale: 1.1;
   transition: 0.5s ease-in-out;
 }
 
-.App form {
+.app form {
   display: flex;
   flex-direction: column;
   margin: 30px auto;
@@ -39,12 +39,12 @@
   padding: 15px;
 }
 
-.App form:hover {
+.app form:hover {
   scale: 1.1;
   transition: 0.5s ease-in-out;
 }
 
-.App form input {
+.app form input {
   width: 50%;
   padding: 10px 15px;
   font-size: 18px;
@@ -54,12 +54,12 @@
   outline-color: orange;
 }
 
-.App form input:focus {
+.app form input:focus {
   scale: 1.05;
   transition: 0.5s ease-in-out;
 }
 
-.App form button {
+.app form button {
   width: 30%;
   padding: 10px 15px;
   margin: 5px auto;
@@ -72,9 +72,18 @@
   font-size: 18px;
 }
 
-.App form button:hover {
-  scale: 1.1;
+.app form button:hover {
+  /* scale: 1.1; */
   transition: 0.5s ease-out;
-  background-color: rgb(75, 0, 188);
+  background-color: rgb(188, 0, 0);
   color: #fff;
+}
+
+.warning {
+  color: rgb(190, 3, 3);
+  font-size: 18px;
+}
+
+.red-outline {
+  border: 2px solid red !important;
 }

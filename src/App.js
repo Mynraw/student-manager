@@ -9,43 +9,73 @@ const App = () => {
   // expression gerekiyor.
   // useState
   // array olarak geldiği için destructure edilebilir.
-  const [studentName, setStudentName] = useState("");
+
   // ilk hali değerin kendisi, ikincisi değeri getiren/değiştiren fonksiyon
+  // inputs state
   const [studentInput, setStudentInput] = useState("");
-  // input'taki yazı her değiştiğinde studentInput'a set'lenecek.
-  const [studentCourse, setStudentCourse] = useState("");
   const [studentCourseInput, setStudentCourseInput] = useState("");
-  const [studentInstructor, setStudentInstructor] = useState("");
   const [studentInstructorInput, setStudentInstructorInput] = useState("");
-  const [studentScore, setStudentScore] = useState("");
   const [studentScoreInput, setStudentScoreInput] = useState("");
+  // obj state
+  const [student, setStudent] = useState({});
+  // error state
+  const [nameError, setNameError] = useState(false);
+  const [courseError, setCourseError] = useState(false);
+  const [instructorError, setInstructorError] = useState(false);
+  const [scoreError, setScoreError] = useState(false);
+  // input'taki yazı her değiştiğinde studentInput'a set'lenecek.
+  // const [studentName, setStudentName] = useState("");
+  // const [studentCourse, setStudentCourse] = useState("");
+  // const [studentInstructor, setStudentInstructor] = useState("");
+  // const [studentScore, setStudentScore] = useState("");
+
+  // TODO: useState'leri 4'e indir, student objesini oluşturacak bir useState daha kullan.
+  // obje oluştur, input'tan gelen değerleri burada tut.
+  // input boş girildiği sürece uyarı verecek ve giriş kabul etmeyecek
 
   const changeStudent = (e) => {
     e.preventDefault();
-    // input'taki değerleri almalarını sağladık.
-    setStudentName(studentInput);
-    setStudentCourse(studentCourseInput);
-    setStudentInstructor(studentInstructorInput);
-    setStudentScore(studentScoreInput);
-    // submit'ten sonra input'ların boşalması için
-    setStudentInput("");
-    setStudentCourseInput("");
-    setStudentInstructorInput("");
-    setStudentScoreInput("");
+
+    // resetting the error
+    setNameError(false);
+    setInstructorError(false);
+    setCourseError(false);
+    setScoreError(false);
+
+    if (
+      studentInput &&
+      studentInstructorInput &&
+      studentCourseInput &&
+      studentScoreInput
+    ) {
+      setStudent({
+        studentInput,
+        studentCourseInput,
+        studentInstructorInput,
+        studentScoreInput,
+      });
+      setStudentInput("");
+      setStudentCourseInput("");
+      setStudentInstructorInput("");
+      setStudentScoreInput("");
+      setNameError(false);
+      setInstructorError(false);
+      setCourseError(false);
+      setScoreError(false);
+    } else {
+      !studentInput && setNameError(true);
+      !studentInstructorInput && setInstructorError(true);
+      !studentCourseInput && setCourseError(true);
+      !studentScoreInput && setScoreError(true);
+    }
   };
 
   return (
-    <div className="App">
+    <div className="app">
       <h1>Student Manager</h1>
-      {/* <h2>{studentName1 || studentName2}</h2> */}
-      <div className="studentInfo">
-        <p>Student: {studentName}</p>
-        <p>Course: {studentCourse}</p>
-        <p>Instructor: {studentInstructor}</p>
-        <p>Score: {studentScore}</p>
-      </div>
       <form action="" onSubmit={changeStudent}>
         <input
+          className={nameError ? "red-outline" : null}
           placeholder="Your Name"
           type="text"
           name=""
@@ -57,7 +87,11 @@ const App = () => {
           // state değiştiği zaman input, input değiştiği zaman da state değişmiş oluyor.
           // buna da two way binding deniyor.
         />
+        {nameError && (
+          <span className="warning">Student name can't be empty.</span>
+        )}
         <input
+          className={courseError ? "red-outline" : null}
           placeholder="Enter Course"
           type="text"
           name=""
@@ -65,7 +99,9 @@ const App = () => {
           onChange={(event) => setStudentCourseInput(event.target.value)}
           value={studentCourseInput}
         />
+        {courseError && <span className="warning">Course can't be empty.</span>}
         <input
+          className={instructorError ? "red-outline" : null}
           placeholder="Enter Instructor"
           type="text"
           name=""
@@ -73,14 +109,18 @@ const App = () => {
           onChange={(event) => setStudentInstructorInput(event.target.value)}
           value={studentInstructorInput}
         />
+        {instructorError && (
+          <span className="warning">Instructor can't be empty.</span>
+        )}
         <input
+          className={scoreError ? "red-outline" : null}
           placeholder="Your Score"
-          type="text"
           name=""
           id=""
           onChange={(event) => setStudentScoreInput(event.target.value)}
           value={studentScoreInput}
         />
+        {scoreError && <span className="warning">Score can't be empty.</span>}
         <button
           type="submit"
           // onClick={
@@ -96,6 +136,16 @@ const App = () => {
           Submit Student
         </button>
       </form>
+      <div className="studentInfo">
+        {/* <p>Student: {studentName}</p>
+        <p>Course: {studentCourse}</p>
+        <p>Instructor: {studentInstructor}</p>
+        <p>Score: {studentScore}</p> */}
+        <p>Student: {student.studentInput}</p>
+        <p>Course: {student.studentCourseInput}</p>
+        <p>Instructor: {student.studentInstructorInput}</p>
+        <p>Score: {student.studentScoreInput}</p>
+      </div>
     </div>
   );
 };
