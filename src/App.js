@@ -1,6 +1,6 @@
 // useState
 import { useState } from "react";
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
   // const studentName1 = "";
@@ -17,26 +17,17 @@ const App = () => {
   const [studentInstructorInput, setStudentInstructorInput] = useState("");
   const [studentScoreInput, setStudentScoreInput] = useState("");
   // obj state
-  const [student, setStudent] = useState({});
+  const [students, setStudents] = useState([]);
   // error state
   const [nameError, setNameError] = useState(false);
   const [courseError, setCourseError] = useState(false);
   const [instructorError, setInstructorError] = useState(false);
   const [scoreError, setScoreError] = useState(false);
-  // input'taki yazı her değiştiğinde studentInput'a set'lenecek.
-  // const [studentName, setStudentName] = useState("");
-  // const [studentCourse, setStudentCourse] = useState("");
-  // const [studentInstructor, setStudentInstructor] = useState("");
-  // const [studentScore, setStudentScore] = useState("");
-
-  // TODO: useState'leri 4'e indir, student objesini oluşturacak bir useState daha kullan.
-  // obje oluştur, input'tan gelen değerleri burada tut.
-  // input boş girildiği sürece uyarı verecek ve giriş kabul etmeyecek
 
   const changeStudent = (e) => {
     e.preventDefault();
 
-    // resetting the error
+    // resetting the error states
     setNameError(false);
     setInstructorError(false);
     setCourseError(false);
@@ -48,12 +39,19 @@ const App = () => {
       studentCourseInput &&
       studentScoreInput
     ) {
-      setStudent({
-        studentInput,
-        studentCourseInput,
-        studentInstructorInput,
-        studentScoreInput,
-      });
+      // get values as obj
+      setStudents([
+        ...students,
+        {
+          studentInput,
+          studentCourseInput,
+          studentInstructorInput,
+          studentScoreInput,
+        },
+      ]);
+      // console.log(students);
+
+      // set default
       setStudentInput("");
       setStudentCourseInput("");
       setStudentInstructorInput("");
@@ -121,30 +119,25 @@ const App = () => {
           value={studentScoreInput}
         />
         {scoreError && <span className="warning">Score can't be empty.</span>}
-        <button
-          type="submit"
-          // onClick={
-          // () => {
-          // studentName2 = "Alp Toker";
-          // console.log(studentName2);
-          // değer değişti ancak ekrana yansımadı. react'a rerender yapılacağını söylemediğimiz
-          // sürece sayfayı yeniden render'lamayacaktır. (useSate, hook)
-          // setStudentName("Arya Deneme");
-          // changeStudent
-          // }
-        >
-          Submit Student
-        </button>
+        <button type="submit">Submit Student</button>
       </form>
-      <div className="studentInfo">
-        {/* <p>Student: {studentName}</p>
-        <p>Course: {studentCourse}</p>
-        <p>Instructor: {studentInstructor}</p>
-        <p>Score: {studentScore}</p> */}
-        <p>Student: {student.studentInput}</p>
-        <p>Course: {student.studentCourseInput}</p>
-        <p>Instructor: {student.studentInstructorInput}</p>
-        <p>Score: {student.studentScoreInput}</p>
+      <div className="student-area">
+        {students.map((student, index) => (
+          <div className="student-info" key={index}>
+            <p>
+              Student: <span className="">{student.studentInput}</span>
+            </p>
+            <p>
+              Course: <span>{student.studentCourseInput}</span>
+            </p>
+            <p>
+              Instructor: <span>{student.studentInstructorInput}</span>
+            </p>
+            <p>
+              Score: <span>{student.studentScoreInput}</span>q
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );

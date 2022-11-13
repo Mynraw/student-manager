@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+// scss'te renk veya başka değişkenleri root'ta tanımlamaya gerek kalmıyor.
+// $primary-color: #F7F7F7;
+
+// scss'te child'ları parent selector'ünün içerisine alabiliyoruz.
+// .app {
+//   font-family: "Lato", sans-serif;
+//   margin: 0;
+//   padding: 0;
+//   text-align: center;
+//   width: 100%;
+//   height: 100%;
+//   .app h1 {
+//     font-size: 50px;
+//   }
+// }
+
+.app {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  h1 {
+    font-size: 50px;
+  }
+  .student-info {
+    width: 80%;
+    margin: 10px auto;
+    border-radius: 5px;
+    text-align: left;
+    padding: 10px;
+    padding-left: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    font-size: 24px;
+    font-weight: 600;
+    &:hover {
+      scale: 1.05;
+      transition: 0.5s ease-in-out;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    &:hover {
+      scale: 1.1;
+      transition: 0.5s ease-in-out;
+    }
+    input {
+      width: 50%;
+      padding: 10px 15px;
+      font-size: 18px;
+      margin: 5px auto;
+      border-radius: 5px;
+      border: none;
+      outline-color: orange;
+      &:focus {
+        scale: 1.05;
+        transition: 0.5s ease-in-out;
+      }
+    }
+    button {
+      width: 30%;
+      padding: 10px 15px;
+      margin: 5px auto;
+      border-radius: 3px;
+      background-color: rgb(248, 91, 1);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 18px;
+      &:hover {
+        /* scale: 1.1; */
+        transition: 0.5s ease-out;
+        background-color: rgb(103, 0, 188);
+        color: #fff;
+      }
+    }
+  }
+  .warning {
+    color: rgb(190, 3, 3);
+    font-size: 18px;
+  }
+  .red-outline {
+    border: 2px solid red !important;
+  }
+  .student-area {
+    width: 100%;
+    height: 100%;
+    /* display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  span {
+    font-weight: 400;
+  } 
+}
