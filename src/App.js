@@ -49,7 +49,22 @@ const App = () => {
           studentScoreInput,
         },
       ]);
+      // !!!! useState async çalışır!
+      // bundan dolayı students hep bir önceki durumunu konsola yazdırıyor.
       // console.log(students);
+      // state'teki async'e birden fazla işlem gelirse hangi state'ini baz alacak?
+      // önüne geçmek için prev. değeri callback olarak içerisine yollayarak
+      // o state'teki değeri baz almasını sağlayabiliriz.
+      // örn:
+      // setStudents(prevStudentList => [
+      //   ...prevStudentList,
+      //   {
+      //     studentInput,
+      //     studentCourseInput,
+      //     studentInstructorInput,
+      //     studentScoreInput,
+      //   },
+      // ])
 
       // set default
       setStudentInput("");
