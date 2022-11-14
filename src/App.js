@@ -40,8 +40,8 @@ const App = () => {
       studentScoreInput
     ) {
       // get values as obj
-      setStudents([
-        ...students,
+      setStudents((prevStudents) => [
+        ...prevStudents,
         {
           studentInput,
           studentCourseInput,
@@ -149,7 +149,7 @@ const App = () => {
               Instructor: <span>{student.studentInstructorInput}</span>
             </p>
             <p>
-              Score: <span>{student.studentScoreInput}</span>q
+              Score: <span>{student.studentScoreInput}</span>
             </p>
           </div>
         ))}
