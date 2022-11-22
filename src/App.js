@@ -9,46 +9,49 @@ const App = () => {
   // expression gerekiyor.
   // useState
   // array olarak geldiği için destructure edilebilir.
-
   // ilk hali değerin kendisi, ikincisi değeri getiren/değiştiren fonksiyon
-  // inputs state
-  const [studentInput, setStudentInput] = useState("");
-  const [studentCourseInput, setStudentCourseInput] = useState("");
-  const [studentInstructorInput, setStudentInstructorInput] = useState("");
-  const [studentScoreInput, setStudentScoreInput] = useState("");
+
   // obj state
-  const [students, setStudents] = useState([]);
-  // error state
-  const [nameError, setNameError] = useState(false);
-  const [courseError, setCourseError] = useState(false);
-  const [instructorError, setInstructorError] = useState(false);
-  const [scoreError, setScoreError] = useState(false);
+  const [studentList, setStudentList] = useState([]);
+
+  // bir öğrenci objesi oluşturup, içerisinde state'leri tutup fazla sayıda useState kullanmanın
+  // önüne geçebiliriz.
+  const [student, setStudent] = useState({
+    studentInput: "",
+    studentCourseInput: "",
+    studentInstructorInput: "",
+    studentScoreInput: "",
+  });
+
+  // error as obj
+  const [error, setError] = useState({
+    studentInput: true,
+    studentCourseInput: true,
+    studentInstructorInput: true,
+    studentScoreInput: true,
+  });
 
   const changeStudent = (e) => {
     e.preventDefault();
 
-    // resetting the error states
-    setNameError(false);
-    setInstructorError(false);
-    setCourseError(false);
-    setScoreError(false);
+    // resetting the error obj props
+    // student ve error objelerindeki prop isimleri aynı olduğundan, prop'ların değeri değişecek.
+    // initial olarak true olan key değerleri, eğer boş string gelmişse falsy olacak. böylelikle else içerisinde error ile oynayabileceğiz.
+    setError({
+      ...student,
+    });
 
-    if (
-      studentInput &&
-      studentInstructorInput &&
-      studentCourseInput &&
-      studentScoreInput
-    ) {
+    if (Object.values(student).every((value) => value)) {
       // get values as obj
-      setStudents((prevStudents) => [
-        ...prevStudents,
-        {
-          studentInput,
-          studentCourseInput,
-          studentInstructorInput,
-          studentScoreInput,
-        },
-      ]);
+      setStudentList((prevStudentList) => [...prevStudentList, student]);
+
+      // reset the inputs
+      setStudent({
+        studentInput: "",
+        studentCourseInput: "",
+        studentInstructorInput: "",
+        studentScoreInput: "",
+      });
       // !!!! useState async çalışır!
       // bundan dolayı students hep bir önceki durumunu konsola yazdırıyor.
       // console.log(students);
@@ -65,21 +68,15 @@ const App = () => {
       //     studentScoreInput,
       //   },
       // ])
-
-      // set default
-      setStudentInput("");
-      setStudentCourseInput("");
-      setStudentInstructorInput("");
-      setStudentScoreInput("");
-      setNameError(false);
-      setInstructorError(false);
-      setCourseError(false);
-      setScoreError(false);
     } else {
-      !studentInput && setNameError(true);
-      !studentInstructorInput && setInstructorError(true);
-      !studentCourseInput && setCourseError(true);
-      !studentScoreInput && setScoreError(true);
+      Object.keys(student).forEach((key) => {
+        if (!student[key]) {
+          setError((prevStudent) => ({
+            ...prevStudent,
+            [key]: student[key],
+          }));
+        }
+      });
     }
   };
 
@@ -88,56 +85,80 @@ const App = () => {
       <h1>Student Manager</h1>
       <form action="" onSubmit={changeStudent}>
         <input
-          className={nameError ? "red-outline" : null}
+          className={!error.studentInput ? "red-outline" : null}
           placeholder="Your Name"
           type="text"
           name=""
           id=""
-          onChange={(event) => setStudentInput(event.target.value)}
-          value={studentInput}
+          onChange={(event) =>
+            setStudent((prevStudent) => ({
+              ...prevStudent,
+              studentInput: event.target.value,
+            }))
+          }
+          value={student.studentInput}
           // böylelikle state değiştiği zaman input değişecek.
           // yani input state'e bağlanmış oldu.
           // state değiştiği zaman input, input değiştiği zaman da state değişmiş oluyor.
           // buna da two way binding deniyor.
         />
-        {nameError && (
+        {!error.studentInput && (
           <span className="warning">Student name can't be empty.</span>
         )}
         <input
-          className={courseError ? "red-outline" : null}
+          className={!error.studentCourseInput ? "red-outline" : null}
           placeholder="Enter Course"
           type="text"
           name=""
           id=""
-          onChange={(event) => setStudentCourseInput(event.target.value)}
-          value={studentCourseInput}
+          onChange={(event) =>
+            setStudent((prevStudent) => ({
+              ...prevStudent,
+              studentCourseInput: event.target.value,
+            }))
+          }
+          value={student.studentCourseInput}
         />
-        {courseError && <span className="warning">Course can't be empty.</span>}
+        {!error.studentCourseInput && (
+          <span className="warning">Course can't be empty.</span>
+        )}
         <input
-          className={instructorError ? "red-outline" : null}
+          className={!error.studentInstructorInput ? "red-outline" : null}
           placeholder="Enter Instructor"
           type="text"
           name=""
           id=""
-          onChange={(event) => setStudentInstructorInput(event.target.value)}
-          value={studentInstructorInput}
+          onChange={(event) =>
+            setStudent((prevStudent) => ({
+              ...prevStudent,
+              studentInstructorInput: event.target.value,
+            }))
+          }
+          value={student.studentInstructorInput}
         />
-        {instructorError && (
+        {!error.studentInstructorInput && (
           <span className="warning">Instructor can't be empty.</span>
         )}
         <input
-          className={scoreError ? "red-outline" : null}
+          className={!error.studentScoreInput ? "red-outline" : null}
           placeholder="Your Score"
           name=""
           id=""
-          onChange={(event) => setStudentScoreInput(event.target.value)}
-          value={studentScoreInput}
+          onChange={(event) =>
+            setStudent((prevStudent) => ({
+              ...prevStudent,
+              studentScoreInput: event.target.value,
+            }))
+          }
+          value={student.studentScoreInput}
         />
-        {scoreError && <span className="warning">Score can't be empty.</span>}
+        {!error.studentScoreInput && (
+          <span className="warning">Score can't be empty.</span>
+        )}
         <button type="submit">Submit Student</button>
       </form>
       <div className="student-area">
-        {students.map((student, index) => (
+        {studentList.map((student, index) => (
           <div className="student-info" key={index}>
             <p>
               Student: <span className="">{student.studentInput}</span>
