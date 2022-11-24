@@ -1,6 +1,8 @@
 // useState
 import { useState } from "react";
 import "./App.scss";
+import Button from "./components/Button/Button";
+import Header from "./components/Header/Header";
 
 const App = () => {
   // const studentName1 = "";
@@ -68,21 +70,24 @@ const App = () => {
       //     studentScoreInput,
       //   },
       // ])
-    } else {
-      Object.keys(student).forEach((key) => {
-        if (!student[key]) {
-          setError((prevStudent) => ({
-            ...prevStudent,
-            [key]: student[key],
-          }));
-        }
-      });
     }
+    // setError'e student'ı spread ettiğimizden ekstra else kontrolüne gerek kalmamış oldu.
+    // else {
+    //   Object.keys(student).forEach((key) => {
+    //     if (!student[key]) {
+    //       setError((prevStudent) => ({
+    //         ...prevStudent,
+    //         [key]: student[key],
+    //       }));
+    //     }
+    //   });
+    // }
   };
 
   return (
     <div className="app">
-      <h1>Student Manager</h1>
+      {/* <h1>Student Manager</h1> */}
+      <Header />
       <form action="" onSubmit={changeStudent}>
         <input
           className={!error.studentInput ? "red-outline" : null}
@@ -155,7 +160,8 @@ const App = () => {
         {!error.studentScoreInput && (
           <span className="warning">Score can't be empty.</span>
         )}
-        <button type="submit">Submit Student</button>
+        {/* <button type="submit">Submit Student</button> */}
+        <Button name="Submit Student" type="submit" />
       </form>
       <div className="student-area">
         {studentList.map((student, index) => (
