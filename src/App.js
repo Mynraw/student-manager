@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
+import StudentArea from "./components/StudentArea/StudentArea";
+import StudentCard from "./components/StudentCard/StudentCard";
 
 const App = () => {
   // const studentName1 = "";
@@ -93,24 +95,11 @@ const App = () => {
         handleError={error}
         handleStudent={student}
       />
-      <div className="student-area">
+      <StudentArea>
         {studentList.map((student, index) => (
-          <div className="student-info" key={index}>
-            <p>
-              Student: <span className="">{student.studentInput}</span>
-            </p>
-            <p>
-              Course: <span>{student.studentCourseInput}</span>
-            </p>
-            <p>
-              Instructor: <span>{student.studentInstructorInput}</span>
-            </p>
-            <p>
-              Score: <span>{student.studentScoreInput}</span>
-            </p>
-          </div>
+          <StudentCard student={student} key={index} />
         ))}
-      </div>
+      </StudentArea>
     </div>
   );
 };
