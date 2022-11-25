@@ -1,8 +1,8 @@
 // useState
 import { useState } from "react";
 import "./App.scss";
-import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
+import Form from "./components/Form/Form";
 
 const App = () => {
   // const studentName1 = "";
@@ -71,7 +71,7 @@ const App = () => {
       //   },
       // ])
     }
-    // setError'e student'ı spread ettiğimizden ekstra else kontrolüne gerek kalmamış oldu.
+    // if bloğu öncesinde setError'e student'ı spread ettiğimizden ekstra else kontrolüne gerek kalmamış oldu.
     // else {
     //   Object.keys(student).forEach((key) => {
     //     if (!student[key]) {
@@ -86,83 +86,13 @@ const App = () => {
 
   return (
     <div className="app">
-      {/* <h1>Student Manager</h1> */}
       <Header />
-      <form action="" onSubmit={changeStudent}>
-        <input
-          className={!error.studentInput ? "red-outline" : null}
-          placeholder="Your Name"
-          type="text"
-          name=""
-          id=""
-          onChange={(event) =>
-            setStudent((prevStudent) => ({
-              ...prevStudent,
-              studentInput: event.target.value,
-            }))
-          }
-          value={student.studentInput}
-          // böylelikle state değiştiği zaman input değişecek.
-          // yani input state'e bağlanmış oldu.
-          // state değiştiği zaman input, input değiştiği zaman da state değişmiş oluyor.
-          // buna da two way binding deniyor.
-        />
-        {!error.studentInput && (
-          <span className="warning">Student name can't be empty.</span>
-        )}
-        <input
-          className={!error.studentCourseInput ? "red-outline" : null}
-          placeholder="Enter Course"
-          type="text"
-          name=""
-          id=""
-          onChange={(event) =>
-            setStudent((prevStudent) => ({
-              ...prevStudent,
-              studentCourseInput: event.target.value,
-            }))
-          }
-          value={student.studentCourseInput}
-        />
-        {!error.studentCourseInput && (
-          <span className="warning">Course can't be empty.</span>
-        )}
-        <input
-          className={!error.studentInstructorInput ? "red-outline" : null}
-          placeholder="Enter Instructor"
-          type="text"
-          name=""
-          id=""
-          onChange={(event) =>
-            setStudent((prevStudent) => ({
-              ...prevStudent,
-              studentInstructorInput: event.target.value,
-            }))
-          }
-          value={student.studentInstructorInput}
-        />
-        {!error.studentInstructorInput && (
-          <span className="warning">Instructor can't be empty.</span>
-        )}
-        <input
-          className={!error.studentScoreInput ? "red-outline" : null}
-          placeholder="Your Score"
-          name=""
-          id=""
-          onChange={(event) =>
-            setStudent((prevStudent) => ({
-              ...prevStudent,
-              studentScoreInput: event.target.value,
-            }))
-          }
-          value={student.studentScoreInput}
-        />
-        {!error.studentScoreInput && (
-          <span className="warning">Score can't be empty.</span>
-        )}
-        {/* <button type="submit">Submit Student</button> */}
-        <Button name="Submit Student" type="submit" />
-      </form>
+      <Form
+        changeStudent={changeStudent}
+        setStudent={setStudent}
+        handleError={error}
+        handleStudent={student}
+      />
       <div className="student-area">
         {studentList.map((student, index) => (
           <div className="student-info" key={index}>
