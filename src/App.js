@@ -40,7 +40,8 @@ const App = () => {
 
     // resetting the error obj props
     // student ve error objelerindeki prop isimleri aynı olduğundan, prop'ların değeri değişecek.
-    // initial olarak true olan key değerleri, eğer boş string gelmişse falsy olacak. böylelikle else içerisinde error ile oynayabileceğiz.
+    // initial olarak true olan key değerleri, eğer boş string gelmişse falsy olacak. böylelikle else bloğuna ihtiyaç duymadan kontrolü
+    // sağlamış oluyoruz.
     setError({
       ...student,
     });
