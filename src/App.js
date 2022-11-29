@@ -1,10 +1,11 @@
 // useState
 import { useState } from "react";
 import "./App.scss";
-import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import StudentArea from "./components/StudentArea/StudentArea";
-import StudentCard from "./components/StudentCard/StudentCard";
+import Header from "./components/header/Header";
+import Form from "./components/form/Form";
+import StudentArea from "./components/student-area/StudentArea";
+import StudentList from "./components/student-list/StudentList";
+// import StudentCard from "./components/StudentCard/StudentCard";
 
 const App = () => {
   // const studentName1 = "";
@@ -97,9 +98,7 @@ const App = () => {
         handleStudent={student}
       />
       <StudentArea>
-        {studentList.map((student, index) => (
-          <StudentCard student={student} key={index} />
-        ))}
+        <StudentList studentList={studentList} />
       </StudentArea>
     </div>
   );
