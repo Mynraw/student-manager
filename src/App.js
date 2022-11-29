@@ -5,7 +5,6 @@ import Header from "./components/header/Header";
 import Form from "./components/form/Form";
 import StudentArea from "./components/student-area/StudentArea";
 import StudentList from "./components/student-list/StudentList";
-// import StudentCard from "./components/StudentCard/StudentCard";
 
 const App = () => {
   // const studentName1 = "";
@@ -88,14 +87,17 @@ const App = () => {
     // }
   };
 
+  const handleStudentInputProp = (studentProp) =>
+    setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
+
   return (
     <div className="app">
       <Header />
       <Form
         changeStudent={changeStudent}
-        setStudent={setStudent}
         handleError={error}
         handleStudent={student}
+        handleStudentInputProp={handleStudentInputProp}
       />
       <StudentArea>
         <StudentList studentList={studentList} />

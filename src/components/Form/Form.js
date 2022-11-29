@@ -1,6 +1,11 @@
 import React from "react";
 
-const Form = ({ handleError, handleStudent, changeStudent, setStudent }) => {
+const Form = ({
+  handleError,
+  handleStudent,
+  changeStudent,
+  handleStudentInputProp,
+}) => {
   return (
     <form action="" onSubmit={(e) => changeStudent(e)}>
       <input
@@ -10,10 +15,9 @@ const Form = ({ handleError, handleStudent, changeStudent, setStudent }) => {
         name=""
         id=""
         onChange={(event) =>
-          setStudent((prevStudent) => ({
-            ...prevStudent,
+          handleStudentInputProp({
             studentInput: event.target.value,
-          }))
+          })
         }
         value={handleStudent.studentInput}
         // böylelikle state değiştiği zaman input değişecek.
@@ -31,10 +35,9 @@ const Form = ({ handleError, handleStudent, changeStudent, setStudent }) => {
         name=""
         id=""
         onChange={(event) =>
-          setStudent((prevStudent) => ({
-            ...prevStudent,
+          handleStudentInputProp({
             studentCourseInput: event.target.value,
-          }))
+          })
         }
         value={handleStudent.studentCourseInput}
       />
@@ -48,10 +51,9 @@ const Form = ({ handleError, handleStudent, changeStudent, setStudent }) => {
         name=""
         id=""
         onChange={(event) =>
-          setStudent((prevStudent) => ({
-            ...prevStudent,
+          handleStudentInputProp({
             studentInstructorInput: event.target.value,
-          }))
+          })
         }
         value={handleStudent.studentInstructorInput}
       />
@@ -64,10 +66,9 @@ const Form = ({ handleError, handleStudent, changeStudent, setStudent }) => {
         name=""
         id=""
         onChange={(event) =>
-          setStudent((prevStudent) => ({
-            ...prevStudent,
+          handleStudentInputProp({
             studentScoreInput: event.target.value,
-          }))
+          })
         }
         value={handleStudent.studentScoreInput}
       />
