@@ -7,6 +7,7 @@ const StudentCard = ({ student }) => {
       <div className="img-container">
         <img src={PersonImg} alt="person" />
       </div>
+      <hr />
       <div className="student-info">
         <p>
           Student: <span>{student.studentInput}</span>
