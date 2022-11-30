@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import Form from "./components/form/Form";
 import StudentArea from "./components/student-area/StudentArea";
 import StudentList from "./components/student-list/StudentList";
+import SearchBar from "./components/search-bar/SearchBar";
 
 const App = () => {
   // const studentName1 = "";
@@ -87,14 +88,14 @@ const App = () => {
     // }
   };
 
-// app.js'te kullandığımız component'lere "set" methodlarını yollamak sayfanın
-// sadece state'inde değişiklik meydana gelen component'leri re-render'laması
-// mantığına ters geldiğinden, set methodunu bir fonksiyon ile göndermek
-// daha tutarlı ve mantıklı.
-// tanımlanan fonksiyon set methodunu kullanarak istediğimiz
-// state değişikliğini yapmamızı sağlıyor.
-// callback ile önceki değerler tutuluyor, argüman olarak yollanan prop ile değişikliğin
-// meydana geldiği state değişmiş oluyor. ikisinde de spread var.
+  // app.js'te kullandığımız component'lere "set" methodlarını yollamak sayfanın
+  // sadece state'inde değişiklik meydana gelen component'leri re-render'laması
+  // mantığına ters geldiğinden, set methodunu bir fonksiyon ile göndermek
+  // daha tutarlı ve mantıklı.
+  // tanımlanan fonksiyon set methodunu kullanarak istediğimiz
+  // state değişikliğini yapmamızı sağlıyor.
+  // callback ile önceki değerler tutuluyor, argüman olarak yollanan prop ile değişikliğin
+  // meydana geldiği state değişmiş oluyor. ikisinde de spread var.
   const handleStudentInputProp = (studentProp) =>
     setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
 
@@ -110,6 +111,7 @@ const App = () => {
         handleStudentInputProp={handleStudentInputProp}
       />
       <StudentArea>
+        <SearchBar />
         <StudentList studentList={studentList} />
       </StudentArea>
     </div>

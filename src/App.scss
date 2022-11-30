@@ -1,3 +1,4 @@
+// Font
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
 // scss'te renk veya başka değişkenleri root'ta tanımlamaya gerek kalmıyor.
@@ -80,7 +81,7 @@
     display: flex;
     flex-direction: column;
     margin: 30px auto;
-    width: 43.1%;
+    width: 40%;
     border-radius: 5px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
     padding: 15px;
@@ -113,9 +114,7 @@
       font-weight: 400;
       font-size: 18px;
       &:hover {
-        /* scale: 1.1; */
         transition: 0.5s ease-out;
-        // background-color: rgb(103, 0, 188);
         background-color: rgb(21, 10, 82);
         color: #fff;
       }
@@ -131,11 +130,40 @@
   .student-area {
     width: 100%;
     height: 100%;
-    /* display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap; */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    .search-bar {
+      grid-column: 1 / 5;
+      input {
+        font-size: 18px;
+        background-color: transparent;
+        width: 15%;
+        border: 2px solid rgba(0, 0, 0, 0.336);
+        border-radius: 25px;
+        padding: 10px 15px;
+        margin: 5px;
+        transition: border-color 0.5s ease-in-out;
+        &::placeholder {
+          color: black;
+          opacity: 0.4;
+        }
+        &:hover {
+          border-color: rgb(239, 126, 20);
+          &::placeholder {
+            transition: 0.5s ease-in-out;
+            opacity: 0.6;
+          }
+        }
+        &:focus {
+          outline: none;
+          border-color: orange;
+          &::placeholder {
+            transition: 0.5s ease-in-out;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
   }
   span {
     font-weight: 400;
