@@ -15,6 +15,8 @@ const Form = ({
         name=""
         id=""
         onChange={(event) =>
+          // set methodu yerine gönderilen fonksiyon.
+          // içerisine argüman olarak input'taki target value'yi alıyor.
           handleStudentInputProp({
             studentInput: event.target.value,
           })
