@@ -87,6 +87,14 @@ const App = () => {
     // }
   };
 
+// app.js'te kullandığımız component'lere "set" methodlarını yollamak sayfanın
+// sadece state'inde değişiklik meydana gelen component'leri re-render'laması
+// mantığına ters geldiğinden, set methodunu bir fonksiyon ile göndermek
+// daha tutarlı ve mantıklı.
+// tanımlanan fonksiyon set methodunu kullanarak istediğimiz
+// state değişikliğini yapmamızı sağlıyor.
+// callback ile önceki değerler tutuluyor, argüman olarak yollanan prop ile değişikliğin
+// meydana geldiği state değişmiş oluyor. ikisinde de spread var.
   const handleStudentInputProp = (studentProp) =>
     setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
 
@@ -97,6 +105,8 @@ const App = () => {
         changeStudent={changeStudent}
         handleError={error}
         handleStudent={student}
+        // artık burada setStudent'ı değil, setStudent için yeni değer dönmesi için
+        // tanımladığımız fonksiyonu gönderdim.
         handleStudentInputProp={handleStudentInputProp}
       />
       <StudentArea>
