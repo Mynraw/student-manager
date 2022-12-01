@@ -1,5 +1,5 @@
 // useState
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./components/header/Header";
 import Form from "./components/form/Form";
@@ -99,6 +99,10 @@ const App = () => {
   const handleStudentInputProp = (studentProp) =>
     setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
 
+  // fuzzy search
+  const [filteredStudent, setFilteredStudent] = useState("");
+  const getSearchValue = (inputValue) => setFilteredStudent(inputValue);
+
   return (
     <div className="app">
       <Header />
@@ -111,8 +115,11 @@ const App = () => {
         handleStudentInputProp={handleStudentInputProp}
       />
       <StudentArea>
-        <SearchBar />
-        <StudentList studentList={studentList} />
+        <SearchBar getSearchValue={getSearchValue} />
+        <StudentList
+          studentList={studentList}
+          filteredStudent={filteredStudent}
+        />
       </StudentArea>
     </div>
   );
