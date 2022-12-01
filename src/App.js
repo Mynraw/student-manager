@@ -100,8 +100,22 @@ const App = () => {
     setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
 
   // fuzzy search
-  const [filteredStudent, setFilteredStudent] = useState("");
-  const getSearchValue = (inputValue) => setFilteredStudent(inputValue);
+  // const [filteredStudent, setFilteredStudent] = useState("");
+  // const getSearchValue = (inputValue) => setFilteredStudent(inputValue);
+
+  // fuzzy search, alternatif yol
+  const [filteredStudentList, setFilteredStudentList] = useState([]);
+  const [inputName, setInputName] = useState("");
+
+  const handleSearch = (e) => {
+    setInputName(e);
+    const formattedSearchValue = e.trim().toLowerCase();
+    setFilteredStudentList(
+      studentList.filter((student) =>
+        student.studentInput.trim().toLowerCase().includes(formattedSearchValue)
+      )
+    );
+  };
 
   return (
     <div className="app">
@@ -115,10 +129,15 @@ const App = () => {
         handleStudentInputProp={handleStudentInputProp}
       />
       <StudentArea>
-        <SearchBar getSearchValue={getSearchValue} />
+        <SearchBar
+          // getSearchValue={getSearchValue}
+          handleSearch={handleSearch}
+        />
         <StudentList
           studentList={studentList}
-          filteredStudent={filteredStudent}
+          // filteredStudent={filteredStudent}
+          filteredStudentList={filteredStudentList}
+          inputName={inputName}
         />
       </StudentArea>
     </div>
