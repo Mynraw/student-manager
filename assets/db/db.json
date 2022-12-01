@@ -1,0 +1,34 @@
+{
+    "students": [
+        {
+            "studentInput": "arya",
+            "studentCourseInput": "frontEnd",
+            "studentInstructorInput": "orkun durmaz",
+            "studentScoreInput": 81
+        },
+        {
+            "studentInput": "arya",
+            "studentCourseInput": "frontEnd",
+            "studentInstructorInput": "orkun durmaz",
+            "studentScoreInput": 81
+        },
+        {
+            "studentInput": "arya",
+            "studentCourseInput": "frontEnd",
+            "studentInstructorInput": "orkun durmaz",
+            "studentScoreInput": 81
+        },
+        {
+            "studentInput": "arya",
+            "studentCourseInput": "frontEnd",
+            "studentInstructorInput": "orkun durmaz",
+            "studentScoreInput": 81
+        },
+        {
+            "studentInput": "arya",
+            "studentCourseInput": "frontEnd",
+            "studentInstructorInput": "orkun durmaz",
+            "studentScoreInput": 81
+        }
+    ]
+}
