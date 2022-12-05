@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import "./App.scss";
 import Header from "./components/header/Header";
 import Form from "./components/form/Form";
-import StudentArea from "./components/student-area/StudentArea";
 import StudentList from "./components/student-list/StudentList";
 import SearchBar from "./components/search-bar/SearchBar";
+import axios from "axios";
 
 const App = () => {
   // const studentName1 = "";
@@ -100,22 +100,41 @@ const App = () => {
     setStudent((prevStudent) => ({ ...prevStudent, ...studentProp }));
 
   // fuzzy search
-  // const [filteredStudent, setFilteredStudent] = useState("");
-  // const getSearchValue = (inputValue) => setFilteredStudent(inputValue);
+  const [filteredStudent, setFilteredStudent] = useState("");
+  const getSearchValue = (inputValue) => setFilteredStudent(inputValue);
 
   // fuzzy search, alternatif yol
-  const [filteredStudentList, setFilteredStudentList] = useState([]);
-  const [inputName, setInputName] = useState("");
+  // const [filteredStudentList, setFilteredStudentList] = useState([]);
+  // const [inputName, setInputName] = useState("");
 
-  const handleSearch = (e) => {
-    setInputName(e);
-    const formattedSearchValue = e.trim().toLowerCase();
-    setFilteredStudentList(
-      studentList.filter((student) =>
-        student.studentInput.trim().toLowerCase().includes(formattedSearchValue)
-      )
-    );
+  // const handleSearch = (e) => {
+  //   setInputName(e);
+  //   const formattedSearchValue = e.trim().toLowerCase();
+  //   setFilteredStudentList(
+  //     studentList.filter((student) =>
+  //       student.studentInput.trim().toLowerCase().includes(formattedSearchValue)
+  //     )
+  //   );
+  // };
+
+  // API
+  const api = "http://localhost:8000";
+
+  // axios
+  const getStudents = async () => {
+    try {
+      const response = await axios.get(`${api}/students`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    getStudents()
+      .then((studentData) => setStudentList([...studentData]))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="app">
@@ -128,18 +147,18 @@ const App = () => {
         // tanımladığımız fonksiyonu gönderdim.
         handleStudentInputProp={handleStudentInputProp}
       />
-      <StudentArea>
-        <SearchBar
-          // getSearchValue={getSearchValue}
-          handleSearch={handleSearch}
-        />
-        <StudentList
-          studentList={studentList}
-          // filteredStudent={filteredStudent}
-          filteredStudentList={filteredStudentList}
-          inputName={inputName}
-        />
-      </StudentArea>
+      <SearchBar
+        getSearchValue={getSearchValue}
+        // alternatif fuzzy search:
+        // handleSearch={handleSearch}
+      />
+      <StudentList
+        studentList={studentList}
+        filteredStudent={filteredStudent}
+        // alternatif fuzzy search:
+        // filteredStudentList={filteredStudentList}
+        // inputName={inputName}
+      />
     </div>
   );
 };

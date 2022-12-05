@@ -7,28 +7,28 @@
             "studentScoreInput": 81
         },
         {
-            "studentInput": "arya",
-            "studentCourseInput": "frontEnd",
+            "studentInput": "alp",
+            "studentCourseInput": "fullStack",
             "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 81
+            "studentScoreInput": 88
         },
         {
-            "studentInput": "arya",
-            "studentCourseInput": "frontEnd",
+            "studentInput": "ipek",
+            "studentCourseInput": "backEnd",
             "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 81
+            "studentScoreInput": 55
         },
         {
-            "studentInput": "arya",
-            "studentCourseInput": "frontEnd",
+            "studentInput": "efe",
+            "studentCourseInput": "React",
             "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 81
+            "studentScoreInput": 34
         },
         {
-            "studentInput": "arya",
+            "studentInput": "şenay",
             "studentCourseInput": "frontEnd",
             "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 81
+            "studentScoreInput": 83
         }
     ]
 }

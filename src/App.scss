@@ -24,7 +24,10 @@
   text-align: center;
   width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   .header-app {
+    grid-column: 1 / 5;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,48 +55,19 @@
       }
     }
   }
-  .student-card {
-    width: 60%;
-    margin: 20px auto;
-    border-radius: 5px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
-    font-size: 20px;
-    font-weight: 600;
-    .img-container img {
-      width: 50%;
-    }
-    hr {
-      margin: auto;
-      width: 60%;
-      border: none;
-      border-top: 2px solid rgba(0, 0, 0, 0.504);
-    }
-    .student-info {
-      margin: 10px 5px;
-      line-height: 40px;
-      text-align: left;
-    }
-    &:hover {
-      scale: 1.05;
-      transition: 0.5s ease-in-out;
-    }
-  }
   form {
+    grid-column: 1 / 5;
+    height: 90%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     margin: 30px auto;
-    width: 45%;
+    width: 40%;
     border-radius: 5px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
     padding: 15px;
-    // &:hover {
-    //   scale: 1.1;
-    //   transition: 0.5s ease-in-out;
-    // }
     input {
-      width: 60%;
+      width: 65%;
       padding: 10px 15px;
       font-size: 18px;
       margin: 5px auto;
@@ -123,72 +97,95 @@
       }
     }
   }
+  .search-bar {
+    margin: 30px 0 20px 0;
+    grid-column: 1 / 5;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    h1 {
+      grid-column: 3/4;
+      font-size: 36px;
+    }
+    .search-input {
+      grid-column: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+      width: 90%;
+      border: 2px solid rgba(0, 0, 0, 0.336);
+      border-radius: 25px;
+      padding: 10px 15px;
+      transition: border-color 0.4s ease-in-out;
+      &:hover {
+        border-color: black;
+        input {
+          &::placeholder {
+            transition: 0.5s ease-in-out;
+            opacity: 0.6;
+          }
+        }
+        svg {
+          opacity: 0.6;
+        }
+      }
+      input {
+        font-size: 18px;
+        background-color: inherit;
+        width: 100%;
+        border: none;
+        &::placeholder {
+          color: black;
+          opacity: 0.4;
+        }
+        &:focus {
+          outline: none;
+          &::placeholder {
+            transition: 0.5s ease-in-out;
+            opacity: 0.8;
+          }
+        }
+      }
+      svg {
+        width: 10%;
+        opacity: 0.4;
+      }
+    }
+  }
+  .student-card {
+    width: 75%;
+    margin: 20px auto;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    font-weight: 600;
+    .img-container img {
+      width: 50%;
+    }
+    hr {
+      margin: auto;
+      width: 60%;
+      border: none;
+      border-top: 2px solid rgba(0, 0, 0, 0.504);
+    }
+    .student-info {
+      margin: 10px 5px;
+      line-height: 40px;
+      text-align: left;
+    }
+    &:hover {
+      scale: 1.05;
+      transition: 0.5s ease-in-out;
+    }
+  }
   .warning {
     color: rgb(190, 3, 3);
     font-size: 18px;
   }
   .red-outline {
     border: 2px solid red !important;
-  }
-  .student-area {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    .search-bar {
-      grid-column: 1 / 5;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      h1 {
-        grid-column: 3/4;
-        font-size: 36px;
-      }
-      .search-input {
-        grid-column: 5;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: transparent;
-        width: 90%;
-        border: 2px solid rgba(0, 0, 0, 0.336);
-        border-radius: 25px;
-        padding: 10px 15px;
-        transition: border-color 0.4s ease-in-out;
-        &:hover {
-          border-color: black;
-          input {
-            &::placeholder {
-              transition: 0.5s ease-in-out;
-              opacity: 0.6;
-            }
-          }
-          svg {
-            opacity: 0.6;
-          }
-        }
-        input {
-          font-size: 18px;
-          background-color: inherit;
-          width: 100%;
-          border: none;
-          &::placeholder {
-            color: black;
-            opacity: 0.4;
-          }
-          &:focus {
-            outline: none;
-            &::placeholder {
-              transition: 0.5s ease-in-out;
-              opacity: 0.8;
-            }
-          }
-        }
-        svg {
-          width: 10%;
-          opacity: 0.4;
-        }
-      }
-    }
   }
   span {
     font-weight: 400;
