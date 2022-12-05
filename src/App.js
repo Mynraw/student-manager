@@ -36,7 +36,7 @@ const App = () => {
     studentScoreInput: true,
   });
 
-  const changeStudent = (e) => {
+  const addStudent = (e) => {
     e.preventDefault();
 
     // resetting the error obj props
@@ -140,7 +140,7 @@ const App = () => {
     <div className="app">
       <Header />
       <Form
-        changeStudent={changeStudent}
+        addStudent={addStudent}
         handleError={error}
         handleStudent={student}
         // artık burada setStudent'ı değil, setStudent için yeni değer dönmesi için

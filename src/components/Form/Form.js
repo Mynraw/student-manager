@@ -3,11 +3,11 @@ import React from "react";
 const Form = ({
   handleError,
   handleStudent,
-  changeStudent,
+  addStudent,
   handleStudentInputProp,
 }) => {
   return (
-    <form action="" onSubmit={(e) => changeStudent(e)}>
+    <form action="" onSubmit={(e) => addStudent(e)}>
       <input
         className={!handleError.studentInput ? "red-outline" : null}
         placeholder="Your Name"
