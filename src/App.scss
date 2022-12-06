@@ -153,7 +153,7 @@
     }
   }
   .student-card {
-    width: 75%;
+    width: 80%;
     margin: 20px auto;
     border-radius: 5px;
     text-align: center;
@@ -191,8 +191,49 @@
         }
       }
     }
-    .img-container img {
-      width: 50%;
+    .popup-icons {
+      // z-index: -5;
+      width: 70px;
+      position: relative;
+      top: -32px;
+      // left: 170px;
+      left: 130px;
+      padding: 5px;
+      border-radius: 9px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 3px;
+      background-color: rgb(0, 0, 0);
+      button {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        outline: none;
+        svg {
+          fill: rgb(255, 255, 255);
+          max-width: 30px;
+          max-height: 30px;
+          &:hover {
+            fill: rgb(17, 188, 25);
+            transition: 0.3s ease;
+          }
+        }
+      }
+      .cancel-icon {
+        svg {
+          &:hover {
+            fill: rgb(255, 0, 0);
+          }
+        }
+      }
+    }
+    .img-container {
+      img {
+        width: 50%;
+      }
     }
     hr {
       margin: auto;
@@ -206,11 +247,10 @@
       text-align: left;
       p {
         input {
-          width: auto;
           border: none;
           background: transparent;
           font-weight: 400;
-          font-size: 18px;
+          font-size: 20px;
           color: black;
           padding: 5px;
           &::placeholder {
@@ -219,6 +259,7 @@
           &:focus {
             transition: 0.3s ease;
             outline: 2px solid rgb(255, 221, 0);
+            background-color: white;
             border-radius: 5px;
             scale: 1.01;
           }
@@ -243,5 +284,8 @@
   }
   span {
     font-weight: 400;
+  }
+  .invisible {
+    display: none;
   }
 }
