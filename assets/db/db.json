@@ -9,7 +9,7 @@
     },
     {
       "id": 2,
-      "studentName": "hmmmmmm",
+      "studentName": "derin",
       "studentCourse": "fullStack",
       "studentInstructor": "orkun durmaz",
       "studentScore": 88
@@ -27,6 +27,13 @@
       "studentCourse": "React",
       "studentInstructor": "orkun durmaz",
       "studentScore": 34
+    },
+    {
+      "id": 5,
+      "studentName": "şenay",
+      "studentCourse": "frontEnd",
+      "studentInstructor": "ezio auditore",
+      "studentScore": 83
     }
   ]
 }
