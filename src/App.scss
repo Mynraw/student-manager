@@ -177,6 +177,17 @@
         svg {
           max-width: 25px;
           max-height: 25px;
+          &:hover {
+            fill: rgb(255, 221, 0);
+            transition: 0.3s ease;
+          }
+        }
+      }
+      .delete-icon {
+        svg {
+          &:hover {
+            fill: rgb(255, 0, 0);
+          }
         }
       }
     }

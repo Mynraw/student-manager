@@ -1,34 +1,32 @@
 {
-    "students": [
-        {
-            "studentInput": "arya",
-            "studentCourseInput": "frontEnd",
-            "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 81
-        },
-        {
-            "studentInput": "alp",
-            "studentCourseInput": "fullStack",
-            "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 88
-        },
-        {
-            "studentInput": "ipek",
-            "studentCourseInput": "backEnd",
-            "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 55
-        },
-        {
-            "studentInput": "efe",
-            "studentCourseInput": "React",
-            "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 34
-        },
-        {
-            "studentInput": "şenay",
-            "studentCourseInput": "frontEnd",
-            "studentInstructorInput": "orkun durmaz",
-            "studentScoreInput": 83
-        }
-    ]
+  "students": [
+    {
+      "id": 1,
+      "studentName": "arya",
+      "studentCourse": "frontEnd",
+      "studentInstructor": "orkun durmaz",
+      "studentScore": 81
+    },
+    {
+      "id": 2,
+      "studentName": "hmmmmmm",
+      "studentCourse": "fullStack",
+      "studentInstructor": "orkun durmaz",
+      "studentScore": 88
+    },
+    {
+      "id": 3,
+      "studentName": "ipek",
+      "studentCourse": "backEnd",
+      "studentInstructor": "orkun durmaz",
+      "studentScore": 55
+    },
+    {
+      "id": 4,
+      "studentName": "efe",
+      "studentCourse": "React",
+      "studentInstructor": "orkun durmaz",
+      "studentScore": 34
+    }
+  ]
 }

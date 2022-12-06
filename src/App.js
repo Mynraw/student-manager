@@ -22,18 +22,18 @@ const App = () => {
   // bir öğrenci objesi oluşturup, içerisinde state'leri tutup fazla sayıda useState kullanmanın
   // önüne geçebiliriz.
   const [student, setStudent] = useState({
-    studentInput: "",
-    studentCourseInput: "",
-    studentInstructorInput: "",
-    studentScoreInput: "",
+    studentName: "",
+    studentCourse: "",
+    studentInstructor: "",
+    studentScore: "",
   });
 
   // error as obj
   const [error, setError] = useState({
-    studentInput: true,
-    studentCourseInput: true,
-    studentInstructorInput: true,
-    studentScoreInput: true,
+    studentName: true,
+    studentCourse: true,
+    studentInstructor: true,
+    studentScore: true,
   });
 
   const addStudent = (e) => {
@@ -50,13 +50,13 @@ const App = () => {
     if (Object.values(student).every((value) => value)) {
       // get values as obj
       setStudentList((prevStudentList) => [...prevStudentList, student]);
-
+      submitStudent(student);
       // reset the inputs
       setStudent({
-        studentInput: "",
-        studentCourseInput: "",
-        studentInstructorInput: "",
-        studentScoreInput: "",
+        studentName: "",
+        studentCourse: "",
+        studentInstructor: "",
+        studentScore: "",
       });
       // !!!! useState async çalışır!
       // bundan dolayı students hep bir önceki durumunu konsola yazdırıyor.
@@ -68,10 +68,10 @@ const App = () => {
       // setStudents(prevStudentList => [
       //   ...prevStudentList,
       //   {
-      //     studentInput,
-      //     studentCourseInput,
-      //     studentInstructorInput,
-      //     studentScoreInput,
+      //     studentName,
+      //     studentCourse,
+      //     studentInstructor,
+      //     studentScore,
       //   },
       // ])
     }
@@ -112,7 +112,7 @@ const App = () => {
   //   const formattedSearchValue = e.trim().toLowerCase();
   //   setFilteredStudentList(
   //     studentList.filter((student) =>
-  //       student.studentInput.trim().toLowerCase().includes(formattedSearchValue)
+  //       student.studentName.trim().toLowerCase().includes(formattedSearchValue)
   //     )
   //   );
   // };
@@ -121,6 +121,7 @@ const App = () => {
   const api = "http://localhost:8000";
 
   // axios
+  // get all students
   const getStudents = async () => {
     try {
       const response = await axios.get(`${api}/students`);
@@ -130,11 +131,71 @@ const App = () => {
     }
   };
 
+  // get students from db. will run on the first render and whenever studentList's state changes.
   useEffect(() => {
     getStudents()
       .then((studentData) => setStudentList([...studentData]))
       .catch((err) => console.log(err));
-  }, []);
+  }, [studentList]);
+
+  // add students to DB
+  const submitStudent = async (inputObj) => {
+    try {
+      const sentData = await axios({
+        method: "post",
+        url: `${api}/students`,
+        data: {
+          ...inputObj,
+        },
+      });
+      return sentData;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // edit student
+  // const editStudent = async (id) => {
+  //   try {
+  //     const data = await axios({
+  //       method: "patch",
+  //       url: `${api}/students/${id}`,
+  //       data: {
+  //         studentName: "hmmmmmm",
+  //       },
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // delete student
+  const deleteStudent = async (id) => {
+    try {
+      const data = await axios({
+        method: "delete",
+        url: `${api}/students/${id}`,
+        data: {
+          id: id,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // deleteStudent(6)
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.log(err));
+
+  const getStudentId = (eventData) => {
+    deleteStudent(eventData);
+    setStudentList(studentList.filter((student) => student[eventData - 1]));
+  };
+  // editStudent(2)
+  //   .then((res) => console.log(res))
+  //   .catch((err) => console.log(err));
 
   return (
     <div className="app">
@@ -158,6 +219,7 @@ const App = () => {
         // alternatif fuzzy search:
         // filteredStudentList={filteredStudentList}
         // inputName={inputName}
+        getStudentId={getStudentId}
       />
     </div>
   );

@@ -10,7 +10,7 @@ const SearchBar = ({
       <div className="search-input">
         <input
           type={"text"}
-          placeholder={"Search student..."}
+          placeholder={"Search anything..."}
           onChange={(e) => getSearchValue(e.target.value)}
           // fuzzy search alternatif
           // onChange={(e) => handleSearch(e.target.value)}
